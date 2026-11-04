@@ -1,3 +1,4 @@
+mod program;
 use env::{cartpole::CartPole, Environment, pcgrng::PCGRng};
 
 fn main() {
