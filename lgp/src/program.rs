@@ -16,6 +16,10 @@ impl Program {
             
             let a = get_operand(operand1, &state, &registers);
             let b = get_operand(operand2, &state, &registers);
+
+            if operation == 0b000 {
+                registers[destination] = a + b;
+            }
             
 
         }
@@ -47,4 +51,14 @@ mod tests {
         assert_eq!(get_operand(0b001, &state, &registers), 20.0);
         assert_eq!(get_operand(0b110, &state, &registers), 3.0);
     }
+
+    #[test]
+    fn test_execute_add() {
+        let program = Program {
+            genome: 0b000_00_000_001_u64 << 44,
+        };
+
+        assert_eq!(program.execute([2.0, 3.0, 0.0, 0.0]), 5.0);
+    }
+
 }
